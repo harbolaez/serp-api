@@ -22,7 +22,7 @@ router.use(function(req, res, next) {
   next();
 });
 
-// const cache = {};
+const cache = {};
 
 router.post("/search", async (req, res) => {
   const { q } = req.body;
@@ -34,7 +34,7 @@ router.post("/search", async (req, res) => {
   }
 
   const client = new GSR.GoogleSearchResults(process.env.GSR_KEY);
-  console.log(process.env.GSR_KEY);
+
   client.json(req.body, function(data) {
     cache[q] = data;
     res.json(data);
