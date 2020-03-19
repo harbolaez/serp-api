@@ -23,7 +23,6 @@ router.use(function(req, res, next) {
 });
 
 const cache = {};
-
 router.post("/search", async (req, res) => {
   const { q } = req.body;
   if (!q) {
@@ -37,7 +36,7 @@ router.post("/search", async (req, res) => {
 
   client.json(req.body, function(data) {
     cache[q] = data;
-    res.json(data);
+    res.json({ organicResults: data.organic_results });
   });
 });
 
