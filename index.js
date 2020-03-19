@@ -30,7 +30,7 @@ router.post("/search", async (req, res) => {
     return res.json({});
   }
   if (cache[q]) {
-    return res.json(cache[q]);
+    return res.json({ organicResults: cache[q].organic_results });
   }
 
   const client = new GSR.GoogleSearchResults(process.env.GSR_KEY);
